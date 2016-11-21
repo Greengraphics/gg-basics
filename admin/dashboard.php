@@ -35,10 +35,6 @@ function disable_default_dashboard_widgets() {
 }
 add_action('admin_menu', 'disable_default_dashboard_widgets');
 
-
-
-
-
 // remove wordpress version type
 remove_action('wp_head', 'wp_generator');
 
@@ -54,6 +50,33 @@ function remove_footer_admin () {
 add_filter('admin_footer_text', 'remove_footer_admin');
 
 
+// hide TML pages from sub-Admins!
+
+function exclude_pages_from_dash($query) {
+  if ( ! is_admin() )
+    return $query;
+
+  global $pagenow, $post_type;
+  if ( !current_user_can( 'changetoAdministratortosee' ) && $pagenow == 'edit.php' && $post_type == 'page' )
+    $query->query_vars['post__not_in'] = array( '52', '53', '54', '55', '56' ); // Enter your page IDs here
+
+}
+add_filter( 'parse_query', 'exclude_pages_from_dash' );
+
+/* where to put this??
+
+// Get TML pages
+$pages = get_posts( array(
+	'post_type'      => 'page',
+	'post_status'    => 'any',
+	'meta_key'       => '_tml_action',
+	'posts_per_page' => -1
+) );
+
+// Get the page IDs
+$pages = wp_list_pluck( $pages, 'ID' );
+
+*/
 
 
 ?>

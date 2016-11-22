@@ -50,33 +50,35 @@ function remove_footer_admin () {
 add_filter('admin_footer_text', 'remove_footer_admin');
 
 
-// hide TML pages from sub-Admins!
+/**
+ * hide TML pages from sub-Admins!
+ */
+add_filter('parse_query', 'exclude_pages_from_dash');
+function exclude_pages_from_dash($query)
+{
+    global $wpdb, $pagenow, $post_type;
 
-function exclude_pages_from_dash($query) {
-  if ( ! is_admin() )
-    return $query;
+    if (!is_admin()) {
+        return;
+    }
 
-  global $pagenow, $post_type;
-  if ( !current_user_can( 'changetoAdministratortosee' ) && $pagenow == 'edit.php' && $post_type == 'page' )
-    $query->query_vars['post__not_in'] = array( '52', '53', '54', '55', '56' ); // Enter your page IDs here
+    if (// On Pages view AND not Admin
+        !current_user_can('nothingadministrator') &&
+        $pagenow == 'edit.php' &&
+        $post_type == 'page'
+    ) {
+        $query_str = "
+            SELECT $wpdb->posts.ID
+            FROM $wpdb->posts, $wpdb->postmeta
+            WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id
+            AND $wpdb->postmeta.meta_key = '_tml_action'
+        ";
+        $pages = $wpdb->get_results($query_str, ARRAY_A);
+        $pages = wp_list_pluck($pages, 'ID');
 
+        $query->query_vars['post__not_in'] = $pages;
+    }
 }
-add_filter( 'parse_query', 'exclude_pages_from_dash' );
-
-/* where to put this??
-
-// Get TML pages
-$pages = get_posts( array(
-	'post_type'      => 'page',
-	'post_status'    => 'any',
-	'meta_key'       => '_tml_action',
-	'posts_per_page' => -1
-) );
-
-// Get the page IDs
-$pages = wp_list_pluck( $pages, 'ID' );
-
-*/
 
 
 ?>

@@ -171,7 +171,7 @@ function emwa_options_page(  ) {
 	<div class="wrap">
 		<form action='options.php' method='post'>
 
-			<h2>Editor Menu and Widget Access</h2>
+			<h2>Editor Menu, Widget Access and other clever GG stuff</h2>
 
 			<?php
 			settings_fields( 'emPage' );

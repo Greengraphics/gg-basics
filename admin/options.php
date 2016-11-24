@@ -7,7 +7,7 @@ add_action( 'admin_init', 'emwa_settings_init' );
 
 function emwa_add_admin_menu(  ) { 
 
-	add_submenu_page( 'themes.php', 'Editor Access', 'Editor Access', 'manage_options', 'editorMenuWidgetAccess', 'emwa_options_page' );
+	add_submenu_page( 'themes.php', 'GG Stuff', 'GG Stuff', 'manage_options', 'editorMenuWidgetAccess', 'emwa_options_page' );
 
 }
 

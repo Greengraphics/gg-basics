@@ -16,7 +16,7 @@ function custom_dashboard_help() {
 	echo '<h2>';
 	bloginfo('name');
 	echo '</h2>';
-	echo '<p style=font-size:1.4em;">Please use any of the menu items to your left.</p><p style=font-size:1.4em;">And click Dashboard anytime you want to come back here.</p><p style=font-size:1.4em;"><p style=font-size:1.4em;">Make sure you keep your <a href="http://www.browsehappy.com/" target="_blank">browser up-to-date</a>.</p><div style="clear:both"></div>';
+	echo '<p style=font-size:1.4em;">Please use any of the menu items to your left.</p><p style=font-size:1.4em;">And click Dashboard anytime you want to come back here.</p><div style="clear:both"></div>';
 }
 
 

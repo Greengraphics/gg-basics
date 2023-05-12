@@ -21,6 +21,9 @@ if ( ! defined('ABSPATH')) {
 // Backend page for settings.
 require_once 'admin/admin-page.php';
 
+// Email related functionality.
+require_once 'admin/emails.php';
+
 // include ('admin/caps.php');
 // include ('admin/menus.php');
 include ('admin/options.php');

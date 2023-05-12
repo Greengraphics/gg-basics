@@ -16,7 +16,7 @@ function custom_dashboard_help() {
 	echo '<h2>';
 	bloginfo('name');
 	echo '</h2>';
-	echo '<p style=font-size:1.4em;">Please use any of the menu items to your left.</p><p style=font-size:1.4em;">And click Dashboard anytime you want to come back here.</p><div style="clear:both"></div>';
+	echo '<p style=font-size:1.4em;">Please use any of the menu items to your left, or hover over your site name top left and Visit Site.</p><p style=font-size:1.4em;">And click Dashboard anytime you want to come back here.</p><div style="clear:both"></div>';
 }
 
 
@@ -79,6 +79,3 @@ function exclude_pages_from_dash($query)
         $query->query_vars['post__not_in'] = $pages;
     }
 }
-
-
-?>

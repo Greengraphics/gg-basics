@@ -1,11 +1,25 @@
 <?php
-if ( __FILE__ == $_SERVER['SCRIPT_FILENAME'] ) { exit; }
 
-add_action( 'admin_menu', 'emwa_add_admin_menu' );
-add_action( 'admin_init', 'emwa_settings_init' );
+// stuff here if you want it.
+
+// block WP enum scans
+// https://m0n.co/enum
+if (!is_admin()) {
+	// default URL format
+	if (preg_match('/author=([0-9]*)/i', $_SERVER['QUERY_STRING'])) die();
+	add_filter('redirect_canonical', 'shapeSpace_check_enum', 10, 2);
+}
+function shapeSpace_check_enum($redirect, $request) {
+	// permalink URL format
+	if (preg_match('/\?author=([0-9]*)(\/*)/i', $request)) die();
+	else return $redirect;
+}
+
+// add_action( 'admin_menu', 'emwa_add_admin_menu' );
+// add_action( 'admin_init', 'emwa_settings_init' );
 
 
-function emwa_add_admin_menu(  ) { 
+function emwa_add_admin_menu() { 
 
 	add_submenu_page( 'themes.php', 'GG Stuff', 'GG Stuff', 'manage_options', 'editorMenuWidgetAccess', 'emwa_options_page' );
 
@@ -184,7 +198,3 @@ function emwa_options_page(  ) {
 	<?php
 
 }
-
-// Thanks to jeroensormani for help with these settings.
-
-?>

@@ -5,16 +5,21 @@
  * Description: All the good stuff. Hides Wordpress stuff.
  * Author: Greengraphics
  * Author URI: https://www.greengraphics.com.au/
- * Version: 1.0.2
+ * Version: 1.0.3
  * Text Domain: gg-basics
  * License: GPL2
  *
  * Copyright 2023 Greengraphics
+ * 
+ * @package gg
  */
 
 if ( ! defined('ABSPATH')) {
     die;
 }
+
+// Backend page for settings.
+require_once 'admin/admin-page.php';
 
 // include ('admin/caps.php');
 // include ('admin/menus.php');

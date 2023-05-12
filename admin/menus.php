@@ -1,6 +1,11 @@
 <?php 
-if ( __FILE__ == $_SERVER['SCRIPT_FILENAME'] ) { exit; }
 
+
+/**
+ * Hide certain menu items from Editors
+ *
+ * @return void
+ */
 function emwa_new_admin_menu() {
 
 	$user = new WP_User(get_current_user_id());
@@ -65,10 +70,14 @@ function emwa_new_admin_menu() {
 
 	}
 }
+// add_action('admin_init', 'emwa_new_admin_menu');
 
-add_action('admin_init', 'emwa_new_admin_menu');
 
-
+/**
+ * Hide admin bar items from Editors.
+ *
+ * @return void
+ */
 function emwa_adminbar_link() {
 
 	$user = new WP_User(get_current_user_id());
@@ -98,9 +107,14 @@ function emwa_adminbar_link() {
   }
 		
 }
-add_action( 'wp_before_admin_bar_render', 'emwa_adminbar_link', 999 );
+// add_action( 'wp_before_admin_bar_render', 'emwa_adminbar_link', 999 );
 
 
+/**
+ * Hide customiser from Editors.
+ *
+ * @return void
+ */
 function emwa_hide_custom() {
 
 	$user = new WP_User(get_current_user_id());
@@ -119,11 +133,5 @@ function emwa_hide_custom() {
 		</style>
 		";
 	}
-}
-	 
-add_action( 'admin_head', 'emwa_hide_custom', 99 ); 
-
-
-
-
-?>
+} 
+// add_action( 'admin_head', 'emwa_hide_custom', 99 ); 

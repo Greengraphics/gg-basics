@@ -1,10 +1,9 @@
 <?php 
-if ( __FILE__ == $_SERVER['SCRIPT_FILENAME'] ) { exit; }
 
 $emwaOptions = get_option( 'emwa_settings' );
 
+// TODO: only do this once.
 // Allow Editors access to the Appearance menu
-
 function emwa_add_cap( $caps ) {
 
 	if( ! empty( $caps[ 'edit_pages' ] ) ) {
@@ -13,12 +12,11 @@ function emwa_add_cap( $caps ) {
 	return $caps;
 	
 }
+// add_filter( 'user_has_cap', 'emwa_add_cap' );
 
-add_filter( 'user_has_cap', 'emwa_add_cap' );
 
-
+// TODO: only do this once.
 // Remove access to Themes page.
-
 function emwa_set_capabilities() {
 
     $editor = get_role( 'editor' );
@@ -38,6 +36,3 @@ function emwa_set_capabilities() {
     }
 }
 add_action( 'init', 'emwa_set_capabilities' );
-
-
-?>

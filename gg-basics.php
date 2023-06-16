@@ -24,6 +24,9 @@ require_once 'admin/admin-page.php';
 // Email related functionality.
 require_once 'admin/emails.php';
 
+// Revision related functionality.
+require_once 'admin/revisions.php';
+
 // include ('admin/caps.php');
 // include ('admin/menus.php');
 include ('admin/options.php');

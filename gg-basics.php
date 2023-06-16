@@ -9,6 +9,9 @@
  * Text Domain: gg-basics
  * License: GPL2
  *
+ * Update URI: https://github.com/Greengraphics/gg-basics
+ * download_url: https://github.com/Greengraphics/gg-basics
+ * 
  * Copyright 2023 Greengraphics
  * 
  * @package gg
@@ -17,6 +20,16 @@
 if ( ! defined('ABSPATH')) {
     die;
 }
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Plugin updates.
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+	'https://github.com/Greengraphics/gg-basics',
+	__FILE__,
+	'gg-basics'
+);
 
 // Backend page for settings.
 require_once 'admin/admin-page.php';

@@ -1,5 +1,7 @@
 {
     "name": "greengraphics/gg-basics",
+    "description": "Basic setup and settings.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Greengraphics\\GgBasics\\": "src/"

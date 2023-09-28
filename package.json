@@ -1,0 +1,13 @@
+{
+  "name": "gg-basics",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "pnpm dev",
+    "dev": "cd admin && pnpm run start",
+    "build": "cd admin && pnpm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

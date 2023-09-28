@@ -31,70 +31,24 @@ add_filter( 'plugin_action_links_gg-basics/gg-basics.php', 'gg_plugin_action_lin
  * @return void
  */
 function gg_options_page() { 
-	?>
-	<div class="wrap">
-		<form action='options.php' method='post'>
-
-			<h1><?php echo get_admin_page_title(); ?> Settings</h1>
-
-			<?php
-			settings_fields( 'gg_settings_group' );
-			do_settings_sections( 'gg_settings_group' );
-			submit_button();
-			?>
-
-		</form>
-	</div>
-	<?php
+	include_once( __DIR__ . '/admin.php');
 }
 
+function gg_admin_scripts(){
+    $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
 
-/**
- * Register backend settings.
- *
- * @return void
- */
-function gg_settings_init() { 
+    // Check if you are on a specific admin page and enqueue scripts accordingly.
+    if ($current_page !== 'gg-settings') {
+		return;
+	}
 
-    // Init settings.
-	register_setting( 'gg_settings_group', 'gg_settings' );
+	$plugin_url  = plugin_dir_url( __FILE__ );
 
-    // Add section.
-	add_settings_section(
-		'gg_section', 
-		__( '<i class="dashicons-before dashicons-admin-appearance"></i> Settings section', 'gg' ), 
-		'gg_settings_section_callback', 
-		'gg_settings_group'
-	);
-
-    // Add a section field.
-	add_settings_field( 
-		'gg_chk_themes', 
-		__( 'Themes', 'gg' ), 
-		'gg_chk_themes_render', 
-		'gg_settings_group', 
-		'gg_section' 
-	);
+	wp_enqueue_script('react-settings-page-menu-options',
+		$plugin_url . '/build/index.js',
+		array('wp-element', 'wp-api-fetch'),
+		'1.00',
+		true);
 
 }
-add_action( 'admin_init', 'gg_settings_init' );
-
-
-function gg_chk_themes_render(  ) { 
-
-	$options = get_option( 'gg_settings' );
-	if ( isset ( $options['gg_chk_themes'] ) ) { 
-        $ggOptions = $options['gg_chk_themes'];
-	} else { 
-        $ggOptions = 0; 
-    };
-	?>
-
-	<input type='checkbox' name='gg_settings[gg_chk_themes]' <?php checked( $ggOptions ); ?> value="1">
-	<?php
-}
-
-
-function gg_settings_section_callback() {
-	echo __( 'Description about the <strong>settings section</strong>', 'gg' );
-}
+add_action( 'admin_enqueue_scripts', 'gg_admin_scripts' );

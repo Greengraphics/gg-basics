@@ -1,22 +1,39 @@
 
 import './App.css';
 
-function App() {
+const useState = wp.element.useState;
+
+const App = () => {
+
+  const [option1, setOption1] = useState('');
+  const [option2, setOption2] = useState('');
+
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit s<code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>GG Basics Settings</h1>
       </header>
+
+      <div>
+          <label>Options 1</label>
+          <input
+              value={option1}
+              onChange={(event) => {
+                setOption1(event.target.value);
+              }}
+          />
+        </div>
+
+        <div>
+          <label>Options 2</label>
+          <input
+              value={option2}
+              onChange={(event) => {
+                setOption2(event.target.value);
+              }}
+          />
+        </div>
+
     </div>
   );
 }

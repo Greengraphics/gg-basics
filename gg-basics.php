@@ -43,6 +43,9 @@ require_once 'admin/revisions.php';
 // include ('admin/caps.php');
 // include ('admin/menus.php');
 include ('admin/options.php');
+
+// API for our settings.
+include ('admin/rest-api.php');
 include ('admin/dashboard.php');
 
 // Need to add something to enable/disable.
